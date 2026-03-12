@@ -22,6 +22,7 @@ import CollisionFlash from './CollisionFlash';
 import HintOverlay    from './HintOverlay';
 import ScoreDisplay   from './ScoreDisplay.jsx';
 import MusicPlayer    from './MusicPlayer';
+import SupportDrawer  from './SupportDrawer';
 
 export default function GameCanvas() {
   const canvasRef = useRef(null);
@@ -71,8 +72,8 @@ export default function GameCanvas() {
     let score         = 0;
     let nextKmScore   = 5;
 
-    const camPos = new THREE.Vector3(0, 6, 16);
-    const camTgt = new THREE.Vector3(0, 2, 0);
+    const camPos = new THREE.Vector3(0, 7.8, 14.5);
+    const camTgt = new THREE.Vector3(0, 3.1, 0);
 
     let rafId;
 
@@ -106,7 +107,7 @@ export default function GameCanvas() {
       totalDist        += Math.abs(speed);
 
       const fovFactor = speed > 0 ? Math.min(speed / MAX_FWD, 1) : 0;
-      camera.fov += (65 + fovFactor * 7 - camera.fov) * 0.04;
+      camera.fov += (65 + fovFactor * 3.5 - camera.fov) * 0.04;
       camera.updateProjectionMatrix();
 
       const sf  = Math.min(Math.abs(speed) / MAX_FWD, 1);
@@ -167,8 +168,8 @@ if (collision) {
 
       shakeAmt *= 0.80;
       const fwd = speed >= 0 ? 1 : -1;
-      camPos.lerp(new THREE.Vector3(truck.position.x, truck.position.y + 5.5, tz + fwd * 16), 0.08);
-      camTgt.lerp(new THREE.Vector3(truck.position.x, truck.position.y + 1.8, tz), 0.10);
+      camPos.lerp(new THREE.Vector3(truck.position.x, truck.position.y + 7.4, tz + fwd * 14.5), 0.08);
+      camTgt.lerp(new THREE.Vector3(truck.position.x, truck.position.y + 3.1, tz - 6), 0.10);
       const shakeDir = frame % 2 === 0 ? 1 : -1;
       camera.position.set(
         camPos.x + shakeDir * shakeAmt * 0.22,
@@ -217,6 +218,7 @@ if (collision) {
       <HintOverlay />
       <HUD kmh={hudData.kmh} gear={hudData.gear} dist={hudData.dist} />
       <MusicPlayer />
+      <SupportDrawer />
     </div>
   );
 }
