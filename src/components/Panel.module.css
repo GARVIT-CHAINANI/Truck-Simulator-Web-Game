@@ -1,0 +1,17 @@
+.panel {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 160, 80, 0.15);
+  border-radius: 12px;
+  padding: 12px 22px;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+}
+
+.label {
+  font-size: 10px;
+  color: #c08060;
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
